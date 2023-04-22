@@ -1,66 +1,64 @@
 public class MergeSort {
+
     public static void main(String[] args){
-        int[] arr = {3,4,6,1,5,12,9,7};
-        int[] result = mergeSort(arr,0,arr.length-1);
+        int[] arr = {1,5,12,9,7};
+        int[] result = mergeSort(arr);
         outputResult(result);
     }
 
-    private static int[] mergeSort(int[] arr, int left, int right) {
-        if(left<right){
-            int m = (left+right)/2;
+    private static int[] mergeSort(int[] arr) {
+        int inputLength = arr.length;
+        if(inputLength > 2){
+            int middle = inputLength / 2;
+            int[] leftHalf = new int[middle];
+            int[] rightHalf = new int[inputLength-middle];
 
-            mergeSort(arr, left, m);
-            mergeSort(arr, m+1,right);
+            for (int i = 0; i < middle; i++) {
+                leftHalf[i] = arr[i];
+            }
 
-            merge(arr, left, m, right);
+            for (int i = middle; i < inputLength; i++) {
+                rightHalf[i-middle] = arr[i];
+            }
+
+            mergeSort(leftHalf);
+            mergeSort(rightHalf);
+
+            //Merge
+            merge(arr, leftHalf, rightHalf);
         }
+
         return arr;
     }
 
-    private static void merge(int[] arr, int left, int m, int right) {
-        int n1 = m - left + 1;
-        int n2 = right - m;
+    private static void merge(int[] arr, int[] leftHalf, int[] rightHalf) {
+        int leftSize = leftHalf.length;
+        int rightSize = rightHalf.length;
 
-        int leftArray[] = new int[n1];
-        int rightArray[] = new int[n2];
+        int i = 0, j = 0, k = 0;
 
-
-        for(int i = 0; i<n1; i++){
-            leftArray[i] = arr[left + i];
-        }
-        for(int j = 0; j<n2; j++){
-            rightArray[j] = arr[m + 1 + j];
-        }
-
-        int i, j, k;
-        i = 0;
-        j = 0;
-        k = left;
-
-
-        while(i < n1 && j < n2){
-            if(leftArray[i] <= rightArray[j]){
-                arr[k] = leftArray[i];
+        while (i<leftSize && j < rightSize){
+            if(leftHalf[i] <= rightHalf[j]){
+                arr[k] = leftHalf[i];
                 i++;
             }else{
-                arr[k]  = rightArray[j];
+                arr[k] = rightHalf[j];
                 j++;
             }
             k++;
         }
 
-        while(i < n1){
-            arr[k] = leftArray[i];
+        while(i<leftSize){
+            arr[k] = leftHalf[i];
             i++;
             k++;
         }
 
-        while(j < n2){
-            arr[k] = rightArray[j];
+        while(j<rightSize){
+            arr[k] = rightHalf[j];
             j++;
             k++;
         }
-
     }
 
 
@@ -70,4 +68,3 @@ public class MergeSort {
         }
     }
 }
-
