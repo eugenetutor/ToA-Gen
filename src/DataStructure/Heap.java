@@ -1,8 +1,6 @@
 package DataStructure;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class Heap {
 
@@ -75,7 +73,7 @@ public class Heap {
         System.out.println("Max-heap array:");
         h.printArray(array,size);
 
-        h.deleteNode(array, 4);
+        h.deleteNode(array, 1);
         System.out.println("After deleting an element: ");
         h.printArray(array,size);
     }
