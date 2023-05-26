@@ -1,6 +1,6 @@
 package DataStructure;
 
-public class LinkedList {
+public class LinkedList<I extends Number> {
     Node head;
     static class Node{
         int value;
@@ -12,7 +12,7 @@ public class LinkedList {
         }
     }
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<Number> linkedList = new LinkedList<Number>();
         linkedList.head = new Node(1);
         Node second = new Node(2);
         Node third = new Node(3);
