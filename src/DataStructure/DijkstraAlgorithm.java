@@ -77,6 +77,31 @@ public class DijkstraAlgorithm {
 
 
     public static void main(String[] args) {
+        int numVertices  = 7;
+        int source = 0;
 
+        List<List<Edge>> graph = new ArrayList<>();
+        for (int i = 0; i < numVertices; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        graph.get(0).add(new Edge(1,9));
+        graph.get(0).add(new Edge(2,7));
+        graph.get(0).add(new Edge(3,6));
+
+        graph.get(1).add(new Edge(2,8));
+        graph.get(1).add(new Edge(4,3));
+        graph.get(1).add(new Edge(5,10));
+
+        graph.get(2).add(new Edge(3,1));
+
+        graph.get(3).add(new Edge(4,4));
+        graph.get(3).add(new Edge(5,7));
+
+        graph.get(4).add(new Edge(6,3));
+        graph.get(5).add(new Edge(6,5));
+
+        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm();
+        dijkstra.dijkstra(graph, source);
     }
 }
